@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="جهنم سرگرمی؛ دنیایی از بازی‌های رایگان، ماشین حساب و سرگرمی‌های هیجان‌انگیز.">
+<meta name="theme-color" content="#120000">
+
+<title>HELL ZONE | سرزمین شیطان</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;900&display=swap');
+
+:root {
+    --red: #ff1717;
+    --orange: #ff6500;
+    --dark: #100000;
+    --panel: rgba(45, 5, 5, .82);
+    --white: #fff1e8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Vazirmatn, sans-serif;
+    background: #100000;
+    color: var(--white);
+    overflow-x: hidden;
+}
+
+/* BACKGROUND */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -5;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 50% 100%, #8d1600 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 10%, #5a0000, transparent 45%),
+        linear-gradient(140deg, #080000, #260000, #080000);
+}
+
+.grid {
+    position: absolute;
+    width: 150%;
+    height: 100%;
+    left: -25%;
+    top: 55%;
+    background-image:
+        linear-gradient(#ff330022 1px, transparent 1px),
+        linear-gradient(90deg, #ff330022 1px, transparent 1px);
+    background-size: 55px 55px;
+    transform: perspective(400px) rotateX(62deg);
+    animation: gridMove 8s linear infinite;
+}
+
+@keyframes gridMove {
+    from { background-position: 0 0; }
+    to { background-position: 0 55px; }
+}
+
+.fireGlow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: #ff2600;
+    filter: blur(150px);
+    opacity: .17;
+    animation: glow 5s infinite alternate;
+}
+
+.fireGlow:nth-child(2) {
+    left: -150px;
+    top: 10%;
+}
+
+.fireGlow:nth-child(3) {
+    right: -150px;
+    bottom: 5%;
+    background: #ff7400;
+}
+
+@keyframes glow {
+    from { transform: scale(.8); opacity: .1; }
+    to { transform: scale(1.3); opacity: .25; }
+}
+
+/* PARTICLES */
+
+.particle {
+    position: fixed;
+    bottom: -20px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #ff5b00;
+    box-shadow: 0 0 15px #ff2200;
+    pointer-events: none;
+    z-index: -1;
+    animation: rise linear infinite;
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(0) scale(.5);
+        opacity: 0;
+    }
+    20% { opacity: 1; }
+    100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* HEADER */
+
+header {
+    max-width: 1200px;
+    margin: auto;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 0 20px red;
+}
+
+.logo span {
+    color: var(--red);
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #ff4b00;
+    text-shadow: 0 0 15px red;
+}
+
+/* HERO */
+
+.hero {
+    text-align: center;
+    padding: 105px 20px 85px;
+}
+
+.hero .tag {
+    display: inline-block;
+    padding: 10px 22px;
+    border: 1px solid #ff3c3c;
+    border-radius: 40px;
+    background: #ff000018;
+    color: #ff7777;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 8vw, 76px);
+    font-weight: 900;
+    margin: 25px 0;
+    text-shadow: 0 0 35px #ff000077;
+}
+
+.hero h1 span {
+    color: #ff3500;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: auto;
+    line-height: 2.3;
+    color: #d9aaa0;
+}
+
+.btn {
+    padding: 13px 25px;
+    margin: 10px 5px;
+    border: 1px solid #ff5a35;
+    border-radius: 12px;
+    background: linear-gradient(130deg, #d40000, #ff6500);
+    color: white;
+    font-family: inherit;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .3s;
+    box-shadow: 0 5px 25px #ff1b0033;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 35px #ff250099;
+}
+
+/* MAIN */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+.title {
+    text-align: center;
+    font-size: 30px;
+    margin: 65px 0 30px;
+    text-shadow: 0 0 20px #ff2800;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.card {
+    background: var(--panel);
+    border: 1px solid #ff3b3344;
+    border-radius: 22px;
+    padding: 25px;
+    box-shadow: 0 15px 45px #0008, inset 0 0 25px #ff000009;
+    backdrop-filter: blur(15px);
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #ff3b33;
+    box-shadow: 0 15px 45px #ff000022;
+}
+
+.card h2 {
+    color: #ff5933;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #d5aaa0;
+    line-height: 2;
+    margin-bottom: 15px;
+}
+
+/* CALCULATOR */
+
+#display {
+    width: 100%;
+    height: 70px;
+    border-radius: 12px;
+    background: #160303;
+    color: #ff9c65;
+    border: 1px solid #ff383855;
+    font-size: 27px;
+    text-align: left;
+    direction: ltr;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 9px;
+}
+
+.key {
+    height: 55px;
+    background: #390808;
+    color: white;
+    border: 1px solid #ff383833;
+    border-radius: 12px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.key:hover {
+    background: #a20c00;
+}
+
+.equal {
+    background: #ff3900;
+}
+
+.clear {
+    color: #ff684e;
+}
+
+/* INPUT */
+
+.game-input {
+    width: 100%;
+    padding: 14px;
+    background: #160303;
+    border: 1px solid #ff383855;
+    border-radius: 12px;
+    color: white;
+    font-family: inherit;
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.result {
+    padding: 15px;
+    background: #170303;
+    border: 1px solid #ff383322;
+    border-radius: 12px;
+    margin-top: 15px;
+    min-height: 50px;
+    color: #ff9c65;
+    line-height: 2;
+}
+
+/* RPS */
+
+.choices {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 25px;
+}
+
+.choice {
+    width: 75px;
+    height: 75px;
+    background: #390808;
+    border: 1px solid #ff3939;
+    border-radius: 18px;
+    font-size: 35px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.choice:hover {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 0 25px #ff1b00;
+}
+
+/* TIC TAC TOE */
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    max-width: 280px;
+    margin: 20px auto;
+}
+
+.cell {
+    aspect-ratio: 1;
+    border-radius: 12px;
+    background: #390808;
+    color: #ff4c20;
+    font-size: 35px;
+    border: 1px solid #ff393955;
+    cursor: pointer;
+}
+
+.cell:hover {
+    background: #650c00;
+}
+
+/* JOKES */
+
+.joke {
+    background: #160303;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    line-height: 2.5;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 45px 20px;
+    margin-top: 60px;
+    border-top: 1px solid #ff383333;
+    color: #c58d80;
+}
+
+footer span {
+    color: #ff3b00;
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        flex-direction: column;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    .hero {
+        padding: 65px 15px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="grid"></div>
+    <div class="fireGlow"></div>
+    <div class="fireGlow"></div>
+</div>
+
+<header>
+
+    <div class="logo">
+        😈 HELL <span>ZONE</span>
+    </div>
+
+    <nav>
+        <a href="#calculator">ماشین حساب</a>
+        <a href="#games">بازی‌ها</a>
+        <a href="#fun">سرگرمی</a>
+    </nav>
+
+</header>
+
+<section class="hero">
+
+    <span class="tag">🔥 به قلمرو آتش خوش آمدی 🔥</span>
+
+    <h1>
+        وارد <span>HELL ZONE</span> شو!
+    </h1>
+
+    <p>
+        اینجا خبری از دنیای معمولی نیست!
+        بازی کن، رقابت کن، رکورد بزن و از سرگرمی‌های جهنمی لذت ببر!
+    </p>
+
+    <button class="btn" onclick="goToGames()">
+        ورود به بازی‌ها 🔥
+    </button>
+
+</section>
+
+<main class="container">
+
+    <h2 class="title" id="calculator">
+        🧮 ماشین حساب جهنمی
+    </h2>
+
+    <section class="card">
+        <input id="display" value="0" readonly>
+
+        <div class="keys">
+
+            <button class="key clear" onclick="clearCalc()">AC</button>
+            <button class="key" onclick="addCalc('(')">(</button>
+            <button class="key" onclick="addCalc(')')">)</button>
+            <button class="key" onclick="addCalc('/')">÷</button>
+
+            <button class="key" onclick="addCalc('7')">7</button>
+            <button class="key" onclick="addCalc('8')">8</button>
+            <button class="key" onclick="addCalc('9')">9</button>
+            <button class="key" onclick="addCalc('*')">×</button>
+
+            <button class="key" onclick="addCalc('4')">4</button>
+            <button class="key" onclick="addCalc('5')">5</button>
+            <button class="key" onclick="addCalc('6')">6</button>
+            <button class="key" onclick="addCalc('-')">−</button>
+
+            <button class="key" onclick="addCalc('1')">1</button>
+            <button class="key" onclick="addCalc('2')">2</button>
+            <button class="key" onclick="addCalc('3')">3</button>
+            <button class="key" onclick="addCalc('+')">+</button>
+
+            <button class="key" onclick="addCalc('0')">0</button>
+            <button class="key" onclick="addCalc('.')">.</button>
+            <button class="key" onclick="deleteCalc()">⌫</button>
+            <button class="key equal" onclick="calculate()">=</button>
+
+        </div>
+
+    </section>
+
+    <h2 class="title" id="games">
+        🎮 بازی‌های قلمرو آتش
+    </h2>
+
+    <div class="cards">
+
+        <section class="card">
+
+            <h2>🔢 حدس عدد شیطان</h2>
+
+            <p>
+                یک عدد بین ۱ تا ۱۰۰ انتخاب کردم.
+                می‌تونی پیداش کنی؟
+            </p>
+
+            <input
+                id="guess"
+                class="game-input"
+                type="number"
+                min="1"
+                max="100"
+                placeholder="عدد مورد نظرت"
+            >
+
+            <button class="btn" onclick="checkGuess()">
+                امتحان کن
+            </button>
+
+            <button class="btn" onclick="resetGuess()">
+                بازی جدید
+            </button>
+
+            <div class="result" id="guessResult">
+                منتظر حدست هستم!
+            </div>
+
+        </section>
+
+        <section class="card">
+
+            <h2>✊ سنگ کاغذ قیچی</h2>
+
+            <p>
+                با شیطان رقابت کن! ببین چه کسی برنده می‌شود!
+            </p>
+
+            <div class="choices">
+
+                <button class="choice" onclick="play('سنگ')">✊</button>
+
+                <button class="choice" onclick="play('کاغذ')">✋</button>
+
+                <button class="choice" onclick="play('قیچی')">✌️</button>
+
+            </div>
+
+            <div class="result" id="rpsResult">
+                انتخابت رو انجام بده!
+            </div>
+
+        </section>
+
+        <section class="card">
+
+            <h2>⭕ بازی دوز</h2>
+
+            <p>
+                تو X هستی و کامپیوتر O است.
+                سه‌تا پشت سر هم بچین!
+            </p>
+
+            <div class="board" id="board"></div>
+
+            <button class="btn" onclick="resetTic()">
+                بازی دوباره
+            </button>
+
+            <div class="result" id="ticResult">
+                نوبت توئه!
+            </div>
+
+        </section>
+
+        <section class="card" id="fun">
+
+            <h2>😂 جعبه جوک شیطانی</h2>
+
+            <div class="joke">
+
+                <div id="jokeText">
+                    آماده‌ای بخندی؟ 😈
+                </div>
+
+                <button class="btn" onclick="newJoke()">
+                    جوک جدید!
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+<footer>
+    😈 <span>HELL ZONE</span>
+    <br><br>
+    ساخته شده برای عاشقان هیجان 🔥
+    <br>
+    © 2026
+</footer>
+
+<script>
+
+/* PARTICLES */
+
+for(let i = 0; i < 35; i++) {
+
+    let particle = document.createElement("div");
+
+    particle.className = "particle";
+
+    particle.style.left = Math.random() * 100 + "%";
+
+    particle.style.animationDuration =
+        (4 + Math.random() * 8) + "s";
+        particle.style.animationDelay =
+        Math.random() * 8 + "s";
+
+    particle.style.width =
+        (3 + Math.random() * 5) + "px";
+
+    particle.style.height = particle.style.width;
+
+    document.body.appendChild(particle);
+
+}
+
+/* CALCULATOR */
+
+let expression = "";
+
+function addCalc(value) {
+
+    if(expression === "خطا") expression = "";
+
+    expression += value;
+
+    document.getElementById("display").value = expression;
+
+}
+
+function clearCalc() {
+
+    expression = "";
+
+    document.getElementById("display").value = "0";
+
+}
+
+function deleteCalc() {
+
+    expression = expression.slice(0, -1);
+
+    document.getElementById("display").value =
+        expression || "0";
+
+}
+
+function calculate() {
+
+    try {
+
+        if(
+            !expression ||
+            !/^[0-9+\-*/().\s]+$/.test(expression)
+        ) {
+            throw new Error();
+        }
+
+        let answer = Function(
+            '"use strict"; return (' + expression + ')'
+        )();
+
+        if(!Number.isFinite(answer)) throw new Error();
+
+        expression = String(
+            Math.round((answer + Number.EPSILON) * 100000000) / 100000000
+        );
+
+        document.getElementById("display").value = expression;
+
+    } catch {
+
+        expression = "";
+
+        document.getElementById("display").value = "خطا";
+
+    }
+
+}
+
+/* KEYBOARD */
+
+document.addEventListener("keydown", function(e) {
+
+    if(e.target.tagName === "INPUT") return;
+
+    if(/[0-9+\-*/().]/.test(e.key)) {
+        addCalc(e.key);
+    }
+
+    if(e.key === "Enter") calculate();
+
+    if(e.key === "Backspace") deleteCalc();
+
+    if(e.key === "Escape") clearCalc();
+
+});
+
+/* GUESS NUMBER */
+
+let secret = Math.floor(Math.random() * 100) + 1;
+
+let attempts = 0;
+
+function checkGuess() {
+
+    let number = Number(
+        document.getElementById("guess").value
+    );
+
+    let result = document.getElementById("guessResult");
+
+    if(
+        !Number.isInteger(number) ||
+        number < 1 ||
+        number > 100
+    ) {
+
+        result.innerText = "یک عدد صحیح بین ۱ تا ۱۰۰ وارد کن!";
+
+        return;
+
+    }
+
+    attempts++;
+
+    if(number === secret) {
+
+        result.innerText =
+            "🔥 آفرین! برنده شدی! تعداد تلاش: " + attempts;
+
+    } else if(number < secret) {
+
+        result.innerText = "⬆️ عدد بزرگ‌تری انتخاب کن!";
+
+    } else {
+
+        result.innerText = "⬇️ عدد کوچک‌تری انتخاب کن!";
+
+    }
+
+}
+
+function resetGuess() {
+
+    secret = Math.floor(Math.random() * 100) + 1;
+
+    attempts = 0;
+
+    document.getElementById("guess").value = "";
+
+    document.getElementById("guessResult").innerText =
+        "عدد جدید انتخاب شد! شروع کن.";
+
+}
+
+/* ROCK PAPER SCISSORS */
+
+function play(user) {
+
+    let options = ["سنگ", "کاغذ", "قیچی"];
+
+    let computer =
+        options[Math.floor(Math.random() * 3)];
+
+    let result;
+
+    if(user === computer) {
+
+        result = "مساوی شدیم!";
+
+    }
+
+    else if(
+
+        (user === "سنگ" && computer === "قیچی") ||
+
+        (user === "کاغذ" && computer === "سنگ") ||
+
+        (user === "قیچی" && computer === "کاغذ")
+
+    ) {
+
+        result = "🏆 تو برنده شدی!";
+
+    }
+
+    else {
+
+        result = "😈 این بار کامپیوتر برد!";
+
+    }
+
+    document.getElementById("rpsResult").innerText =
+
+        "تو: " + user +
+        " | کامپیوتر: " + computer +
+        " | " + result;
+
+}
+
+/* TIC TAC TOE */
+
+let cells = Array(9).fill("");
+
+let finished = false;
+
+function renderBoard() {
+
+    let board = document.getElementById("board");
+
+    board.innerHTML = "";
+
+    cells.forEach((value, index) => {
+
+        let button = document.createElement("button");
+
+        button.className = "cell";
+
+        button.textContent = value;
+
+        button.type = "button";
+
+        button.onclick = () => move(index);
+
+        board.appendChild(button);
+
+    });
+
+}
+
+function getWinner() {
+
+    let patterns = [
+
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+
+        [0,4,8],
+        [2,4,6]
+
+    ];
+
+    for(let pattern of patterns) {
+
+        let [a,b,c] = pattern;
+        if(
+            cells[a] !== "" &&
+            cells[a] === cells[b] &&
+            cells[b] === cells[c]
+        ) {
+
+            return cells[a];
+
+        }
+
+    }
+
+    if(cells.every(value => value !== "")) return "draw";
+
+    return null;
+
+}
+
+function move(index) {
+
+    if(cells[index] !== "" || finished) return;
+
+    cells[index] = "X";
+
+    let winner = getWinner();
+
+    if(winner) {
+
+        endGame(winner);
+
+        return;
+
+    }
+
+    let empty = cells
+        .map((value, index) => value === "" ? index : null)
+        .filter(value => value !== null);
+
+    if(empty.length) {
+
+        let random = Math.floor(Math.random() * empty.length);
+
+        cells[empty[random]] = "O";
+
+    }
+
+    winner = getWinner();
+
+    renderBoard();
+
+    if(winner) endGame(winner);
+
+}
+
+function endGame(winner) {
+
+    finished = true;
+
+    renderBoard();
+
+    let message = "";
+
+    if(winner === "X") {
+
+        message = "🏆 تو برنده شدی!";
+
+    } else if(winner === "O") {
+
+        message = "😈 کامپیوتر برنده شد!";
+
+    } else {
+
+        message = "🤝 بازی مساوی شد!";
+
+    }
+
+    document.getElementById("ticResult").innerText = message;
+
+}
+
+function resetTic() {
+
+    cells = Array(9).fill("");
+
+    finished = false;
+
+    document.getElementById("ticResult").innerText =
+        "نوبت توئه!";
+
+    renderBoard();
+
+}
+
+renderBoard();
+
+/* JOKES */
+
+let jokes = [
+
+    "چرا کامپیوتر به جهنم رفت؟ چون ویروسی شده بود! 😂",
+
+    "به آتش گفتن چرا عصبانی هستی؟ گفت من از اولم داغ بودم! 🔥",
+
+    "چرا کتاب ریاضی ناراحته؟ چون پر از مسئله است! 📚",
+
+    "شیطان به کامپیوتر گفت: تو هم از من بدتری، چون همه رو هنگ می‌کنی! 😈",
+
+    "زندگی کوتاهه؛ بخند قبل از اینکه شارژ گوشیت تموم بشه! 😂",
+
+    "برنامه‌نویس‌ها هیچ‌وقت گم نمی‌شن؛ فقط وارد حلقه بی‌نهایت می‌شن!"
+
+];
+
+function newJoke() {
+
+    let current =
+        document.getElementById("jokeText").innerText;
+
+    let next;
+
+    do {
+
+        next = jokes[Math.floor(Math.random() * jokes.length)];
+
+    } while(next === current && jokes.length > 1);
+
+    document.getElementById("jokeText").innerText = next;
+
+}
+
+/* NAVIGATION */
+
+function goToGames() {
+
+    document.getElementById("games").scrollIntoView({
+
+        behavior: "smooth"
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
